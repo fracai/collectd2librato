@@ -1,0 +1,21 @@
+collectd2librato is a quick script for parsing RRD files from [collectd](https://collectd.org) and uploading the data to [Librato](https://librato.com).
+
+While it's parsing and uploading, it also reads the temperatures of the CPU and hard drives.
+
+The script requires [PyRRD](https://pypi.python.org/pypi/PyRRD/) and [rrdtool](https://www.freshports.org/databases/rrdtool/).
+
+PyRRD can be installed with 'pip install pyrrd' and rrdtool is available in the ports tree.
+
+Primarily, this script is only of use to FreeNAS users. Anyone else can simply install the Librato provided [collectd-librato](https://github.com/librato/collectd-librato) plugin.
+
+Also note that as collectd runs under the main FreeNAS OS, which is not easily modified (and should not be), the easiest way to run this script is as a daemon process in a jail. The included rc script (collectd2librato) should aid in automatically starting the daemon with the jail.
+
+The example.json file should serve as a starting point for enabling interesting RRD gauges. Be sure to adjust the hostname and any gauges that reference pool names.
+
+Bugs, pull requests, and comments are welcome.
+
+Arno Hautala <arno@alum.wpi.edu>
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+(CC BY-SA-3.0) http://creativecommons.org/licenses/by-sa/3.0/
+

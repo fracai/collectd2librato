@@ -1,0 +1,80 @@
+{
+    "hostname":"freenas",
+
+    "drives":[
+        {
+            "prefix":"/dev/",
+            "type":"ada",
+            "ids":[0,1,2,3,4,5]
+        }
+    ],
+    
+    "interval":300,
+    "max_request_count":250,
+    "max_tries":5,
+    "librato":{
+        "user":"user@librato",
+        "token":"librato-token"
+    },
+
+    "log_path":"/mnt/services/c2l.log",
+
+    "gauges":[
+        "df-mnt-tank:df_complex-free",
+        "df-mnt-tank:df_complex-used",
+
+        "load:load",
+        "uptime:uptime",
+
+        "aggregation-cpu-sum:cpu-idle",
+        "aggregation-cpu-sum:cpu-interrupt",
+        "aggregation-cpu-sum:cpu-nice",
+        "aggregation-cpu-sum:cpu-system",
+        "aggregation-cpu-sum:cpu-user",
+
+        "cpu-0:cpu-idle",
+        "cpu-0:cpu-interrupt",
+        "cpu-0:cpu-nice",
+        "cpu-0:cpu-system",
+        "cpu-0:cpu-user",
+
+        "cpu-1:cpu-idle",
+        "cpu-1:cpu-interrupt",
+        "cpu-1:cpu-nice",
+        "cpu-1:cpu-system",
+        "cpu-1:cpu-user",
+
+        "cpu-2:cpu-idle",
+        "cpu-2:cpu-interrupt",
+        "cpu-2:cpu-nice",
+        "cpu-2:cpu-system",
+        "cpu-2:cpu-user",
+
+        "cpu-3:cpu-idle",
+        "cpu-3:cpu-interrupt",
+        "cpu-3:cpu-nice",
+        "cpu-3:cpu-system",
+        "cpu-3:cpu-user",
+
+        "memory:memory-active",
+        "memory:memory-cache",
+        "memory:memory-free",
+        "memory:memory-inactive",
+        "memory:memory-wired",
+
+        "processes:ps_state-blocked",
+        "processes:ps_state-idle",
+        "processes:ps_state-running",
+        "processes:ps_state-sleeping",
+        "processes:ps_state-stopped",
+        "processes:ps_state-wait",
+        "processes:ps_state-zombies",
+
+        "disk-ada0:disk_octets",
+        "disk-ada1:disk_octets",
+        "disk-ada2:disk_octets",
+        "disk-ada3:disk_octets",
+        "disk-ada4:disk_octets",
+        "disk-ada5:disk_octets"
+    ]
+}

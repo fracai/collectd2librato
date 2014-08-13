@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# PROVIDE: collectd2librato
+# REQUIRE: NETWORKING SERVERS DAEMON
+# BEFORE: 
+# KEYWORD: 
+
+# Add some of the following variables to /etc/rc.conf to configure collectd2librato:
+# collectd2librato_enable (bool):	Set to "NO" by default.
+#				Set it to "YES" to enable collectd2librato.
+# collectd2librato_config (str):	Default "/usr/local/custom/collectd2librato/collectd2librato.json"
+#				Set it to the full path to the config file
+#				that collectd2librato will use during the 
+#				automated start-up.
+# collectd2librato_pidfile (str):	Default "/usr/local/var/collectd2librato/collectd2librato.pid"
+
+
+. /etc/rc.subr
+
+name="collectd2librato"
+rcvar=collectd2librato_enable
+
+load_rc_config $name
+
+: ${collectd2librato_enable="NO"}
+: ${collectd2librato_pidfile="/var/run/${name}.pid"}
+: ${collectd2librato_config="/usr/local/custom/collectd2librato/collectd2librato.json"}
+
+collectd2librato_command="/usr/local/bin/python /usr/local/custom/collectd2librato/collectd2librato.py -c ${collectd2librato_config} --prefix /mnt/collectd/localhost/ --run -vvv"
+
+start_cmd="collectd2librato_start"
+
+collectd2librato_start(){
+	echo "starting collectd2librato."
+	PATH="${PATH}:/usr/local/bin/" PYTHONPATH="${PYTHONPATH}:/usr/local/custom/pip/" /usr/sbin/daemon -cfr -p ${collectd2librato_pidfile} ${collectd2librato_command}
+}
+
+run_rc_command "$1"
